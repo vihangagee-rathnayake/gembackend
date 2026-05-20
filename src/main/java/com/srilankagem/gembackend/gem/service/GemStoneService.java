@@ -39,6 +39,10 @@ public class GemStoneService {
         return toResponse(gemStoneRepository.save(gemStone));
     }
 
+    public GemStoneResponse getGemStoneById(Long id) {
+        return toResponse(gemStoneRepository.findById(id).get());
+    }
+
     private GemStoneResponse toResponse(GemStone gemStone) {
         return GemStoneResponse.builder()
                 .id(gemStone.getId())

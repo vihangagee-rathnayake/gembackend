@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,13 +19,19 @@ public class GemStoneController {
     private final GemStoneService gemStoneService;
 
     @GetMapping
-    public Page<GemStoneResponse> getAllGemStones(@PageableDefault(size = 20, sort = "color") Pageable pageable) {
-
-        return gemStoneService.getAllGemStones(pageable);
+    public ResponseEntity<Page<GemStoneResponse>> getAllGemStones(@PageableDefault(size = 20, sort = "color") Pageable pageable) {
+        return ResponseEntity.ok(gemStoneService.getAllGemStones(pageable));
     }
 
     @PostMapping
-    public GemStoneResponse createGemStone(@RequestBody GemStoneRequest request) {
-        return gemStoneService.createGemstone(request);
+    public ResponseEntity<GemStoneResponse> createGemStone(@RequestBody GemStoneRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Custom-Head", "Sending Custom Header") // setting a custom header
+                .body(gemStoneService.createGemstone(request));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GemStoneResponse> getGemStoneById(@PathVariable Long id) {
+        return ResponseEntity.ok(gemStoneService.getGemStoneById());
     }
 }
