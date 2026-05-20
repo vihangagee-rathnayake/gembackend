@@ -7,8 +7,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,8 +23,8 @@ public class GemStoneResponse {
     private GemTreatment treatment;
     private Double pricePerCarat;
     private Integer stockQuantity;
-    private String description;
     private boolean certified;
+    private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
