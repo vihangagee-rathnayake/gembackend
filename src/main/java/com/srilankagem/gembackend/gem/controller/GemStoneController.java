@@ -24,9 +24,5 @@ public class GemStoneController {
         return gemStoneService.getAllGemStones(pageable);
     }
 
-
-
-
-
-
+    public 
 }
