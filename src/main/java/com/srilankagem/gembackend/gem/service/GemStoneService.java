@@ -1,5 +1,6 @@
 package com.srilankagem.gembackend.gem.service;
 
+import com.srilankagem.gembackend.common.exception.ResourceNotFoundException;
 import com.srilankagem.gembackend.gem.dto.GemStoneRequest;
 import com.srilankagem.gembackend.gem.dto.GemStoneResponse;
 import com.srilankagem.gembackend.gem.models.GemStone;
@@ -39,8 +40,9 @@ public class GemStoneService {
         return toResponse(gemStoneRepository.save(gemStone));
     }
 
-    public GemStoneResponse getGemStoneById(Long id) {
-        return toResponse(gemStoneRepository.findById(id).get());
+    public GemStoneResponse getGemStoneById(Long id) throws ResourceNotFoundException {
+        return toResponse(gemStoneRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Gem" , id.toString())));
     }
 
     private GemStoneResponse toResponse(GemStone gemStone) {

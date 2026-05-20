@@ -32,6 +32,6 @@ public class GemStoneController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GemStoneResponse> getGemStoneById(@PathVariable Long id) {
-        return ResponseEntity.ok(gemStoneService.getGemStoneById());
+        return ResponseEntity.ok(gemStoneService.getGemStoneById(id));
     }
 }
