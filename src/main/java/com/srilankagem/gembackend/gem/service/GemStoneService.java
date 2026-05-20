@@ -1,5 +1,6 @@
 package com.srilankagem.gembackend.gem.service;
 
+import com.srilankagem.gembackend.gem.dto.GemStoneRequest;
 import com.srilankagem.gembackend.gem.dto.GemStoneResponse;
 import com.srilankagem.gembackend.gem.models.GemStone;
 import com.srilankagem.gembackend.gem.repository.GemStoneRepository;
@@ -18,6 +19,21 @@ public class GemStoneService {
 
 //      return gemStoneRepo.findByActiveTrue(pageable).map(item ->toResponse(item));
         return gemStoneRepo.findByActiveTrue(pageable).map(this::toResponse);
+    }
+
+    public GemStoneResponse gemStoneResponse(GemStoneRequest request) {
+
+        GemStone gemStone = GemStone.builder()
+                .gemCode(request.getGemCode())
+                .type(request.getType())
+                .origin(request.getOrigin())
+                .caratWeight(request.getCaratWeight())
+                .description(request.getDescription())
+                .stockQuantity(request.getStockQuantity())
+                .color(request.getColor())
+                .treatment(request.getTreatment())
+                .pricePerCarat(request.getPricePerCarat())
+                .build();
     }
 
     private GemStoneResponse toResponse(GemStone gemStone) {

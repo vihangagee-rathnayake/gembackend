@@ -51,6 +51,10 @@ public class GemStone {
     @Builder.Default
     private boolean certified;
 
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean active = true;
+
     @Column(nullable = false , updatable = false)
     private LocalDateTime createdAt;
 
