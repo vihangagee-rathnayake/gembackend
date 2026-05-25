@@ -5,6 +5,7 @@ import com.srilankagem.gembackend.gem.models.GemTreatment;
 import com.srilankagem.gembackend.gem.models.GemType;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
@@ -18,7 +19,7 @@ public class GemStoneResponse {
     private String gemCode;
     private GemType type;
     private String color;
-    private Double caratWeight;
+    private BigDecimal caratWeight;
     private GemOrigin origin;
     private GemTreatment treatment;
     private Double pricePerCarat;

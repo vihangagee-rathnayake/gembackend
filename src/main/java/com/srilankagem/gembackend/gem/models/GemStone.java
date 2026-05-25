@@ -4,6 +4,7 @@ package com.srilankagem.gembackend.gem.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,7 +31,11 @@ public class GemStone {
     private String color;
 
     @Column(nullable = false)
-    private Double caratWeight;
+    private BigDecimal caratWeight;  // We use bigDecimal to avoid rounding issues with double.
+    // big decimal gives precision to our decimal values.
+
+    @OneToOne(mappedBy = "gemStone", cascade = CascadeType.ALL)
+    private Certificate certificate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
